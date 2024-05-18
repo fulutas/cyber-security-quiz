@@ -8,9 +8,7 @@ import { Button } from '@mantine/core';
 const Quiz = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  // let SECOND = 30000 // 30 saniye
-  let SECOND = 3000000 // 30 saniye
-
+  let SECOND = 30000 // 30 saniye
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
