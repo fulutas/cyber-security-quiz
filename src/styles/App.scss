@@ -1,0 +1,58 @@
+
+@font-face {
+	font-family: 'Titillium Regular';
+	src: url('../assets/fonts/TitilliumWeb-Regular.ttf')
+}
+
+@font-face {
+	font-family: 'Titillium SemiBold';
+	src: url('../assets/fonts/TitilliumWeb-SemiBold.ttf')
+}
+
+@font-face {
+	font-family: 'Titillium Light';
+	src: url('../assets/fonts/TitilliumWeb-Light.ttf')
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+#root {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+body {
+	font-family: "Titillium Regular";
+	background-color: #F8FAFC !important;
+}
+
+.route-link {
+	text-decoration: none;
+	appearance: none;
+	font-size: 16px;
+
+	&:visited {
+		color: inherit;
+	}
+
+	&:hover {
+		opacity: 0.7;
+	}
+}
+
+.container {
+	position: relative;
+	width: 100%;
+	max-width: 1340px;
+	margin: 0 auto;
+	min-height: calc(100vh - 50px);
+	margin-top: 30px;
+}
