@@ -8,13 +8,15 @@ import { Button } from '@mantine/core';
 const Quiz = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  let SECOND = 30000 // 30 saniye
+  const SECOND = 45000; // 30 saniye
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [isQuizCompleted, setIsQuizCompleted] = useState(false);
   const [targetDate, setTargetDate] = useState(null);
   const [userAnswers, setUserAnswers] = useState([]);
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [correctOptionIndex, setCorrectOptionIndex] = useState(null);
 
   const [countdown] = useCountDown({
     targetDate,
@@ -47,6 +49,11 @@ const Quiz = () => {
     };
   }, [currentQuestion]);
 
+  useEffect(() => {
+    const correctIndex = questions[currentQuestion].options.findIndex(option => option.isCorrect);
+    setCorrectOptionIndex(correctIndex);
+  }, [currentQuestion]);
+
   const handleAnswerOptionClick = (option, optionIndex) => {
     const newAnswer = {
       questionId: questions[currentQuestion].questionId,
@@ -60,26 +67,26 @@ const Quiz = () => {
       },
     };
     setUserAnswers([...userAnswers, newAnswer]);
+    setSelectedOption({ index: optionIndex, isCorrect: option.isCorrect });
 
     if (option.isCorrect) {
       setScore(score + option.points);
     }
-    handleNextQuestion();
-  };
 
+    setTimeout(() => {
+      handleNextQuestion();
+    }, 3000); 
+  };
 
   const handleNextQuestion = () => {
     const nextQuestion = currentQuestion + 1;
     if (nextQuestion < questions.length) {
       setCurrentQuestion(nextQuestion);
       setTargetDate(Date.now() + SECOND);
+      setSelectedOption(null);
     } else {
       setIsQuizCompleted(true);
-      // Burada API Isteği yapılacak.. 
-      // const postData = [
-      //   { questionId: 1, label : "D"},
-      //   { questionId: 2, label : "E"}
-      // ]
+      // Burada API isteği yapılacak.
     }
   };
 
@@ -108,8 +115,12 @@ const Quiz = () => {
             {questions[currentQuestion].options.map((option, index) => (
               <button
                 key={option.label}
-                className="py-2 px-4 border bg-white shadow-sm text-gray-800 rounded hover:bg-blue-100 transition duration-200"
+                className={`py-2 px-4 border bg-white shadow-sm text-gray-800 rounded transition duration-200
+                  ${selectedOption !== null && selectedOption.index === index ? (option.isCorrect ? 'bg-green-500' : 'bg-red-500') : ''}
+                  ${selectedOption !== null && selectedOption.index !== index && index === correctOptionIndex ? 'bg-green-500' : ''}
+                `}
                 onClick={() => handleAnswerOptionClick(option, index)}
+                disabled={selectedOption !== null} 
               >
                 <div className="flex">
                   <p className="text-left"> {option.answer}</p>
