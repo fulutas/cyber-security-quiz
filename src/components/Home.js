@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Group, Radio, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
+import { NumberInput } from '@mantine/core';
 
 const Home = () => {
 	const navigate = useNavigate();
@@ -12,12 +13,14 @@ const Home = () => {
 			name: '',
 			surname: '',
 			email: '',
-			gender: ''
+			gender: '',
+			age: ''
 		},
 		validate: {
 			name: (value) => value.length === 0 ? "Bu alan zorunludur." : null,
 			surname: (value) => value.length === 0 ? "Bu alan zorunludur." : null,
 			gender: (value) => value.length === 0 ? "Bu alan zorunludur." : null,
+			age: (value) => value.length === 0 ? "Bu alan zorunludur." : null,
 			email: (value) => {
 				if (value.length === 0) {
 					return "Bu alan zorunludur.";
@@ -72,6 +75,14 @@ const Home = () => {
 							size="md"
 							key={form.key('email')}
 							{...form.getInputProps('email')}
+						/>
+						<NumberInput
+							withAsterisk
+							label="Yaş"
+							placeholder="Yaş"
+							size="md"
+							key={form.key('age')}
+							{...form.getInputProps('age')}
 						/>
 						<Radio.Group
 							withAsterisk
