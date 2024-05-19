@@ -17,18 +17,18 @@ const UserForm = () => {
       age: ''
     },
     validate: {
-      // name: (value) => value.length === 0 ? "Bu alan zorunludur." : null,
-      // surname: (value) => value.length === 0 ? "Bu alan zorunludur." : null,
-      // gender: (value) => value.length === 0 ? "Bu alan zorunludur." : null,
-      // age: (value) => value.length === 0 ? "Bu alan zorunludur." : null,
-      // email: (value) => {
-      //   if (value.length === 0) {
-      //     return "Bu alan zorunludur.";
-      //   } else if (!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/.test(value)) {
-      //     return "Hatalı email formatı!";
-      //   }
-      //   return null;
-      // },
+      name: (value) => value.length === 0 ? "Bu alan zorunludur." : null,
+      surname: (value) => value.length === 0 ? "Bu alan zorunludur." : null,
+      gender: (value) => value.length === 0 ? "Bu alan zorunludur." : null,
+      age: (value) => value.length === 0 ? "Bu alan zorunludur." : null,
+      email: (value) => {
+        if (value.length === 0) {
+          return "Bu alan zorunludur.";
+        } else if (!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/.test(value)) {
+          return "Hatalı email formatı!";
+        }
+        return null;
+      },
     },
   });
 

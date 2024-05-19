@@ -21,7 +21,6 @@ const Quiz = () => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [correctOptionIndex, setCorrectOptionIndex] = useState(null);
 
-
   const [countdown] = useCountDown({
     targetDate,
     onEnd: () => {
@@ -129,8 +128,8 @@ const Quiz = () => {
               <button
                 key={option.label}
                 className={`py-2 px-4 border bg-white shadow-sm text-gray-800 rounded transition duration-200
-                ${selectedOption !== null && selectedOption.index === index ? (option.isCorrect ? 'bg-green-400' : 'bg-red-500') : ''}
-                  ${selectedOption !== null && selectedOption.index !== index && index === correctOptionIndex ? 'bg-green-400' : ''}
+                ${selectedOption !== null && selectedOption.index === index ? (option.isCorrect ? '!bg-green-400' : '!bg-red-500') : ''}
+                  ${selectedOption !== null && selectedOption.index !== index && index === correctOptionIndex ? '!bg-green-400' : ''}
                 `}
                 onClick={() => handleAnswerOptionClick(option, index)}
                 disabled={selectedOption !== null}
