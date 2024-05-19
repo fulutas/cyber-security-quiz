@@ -3,14 +3,16 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useCountDown } from 'ahooks';
 import { questions } from '../../data/questions';
 import QuizCompleted from './QuizCompleted';
-import { Button } from '@mantine/core';
+import { Button, LoadingOverlay } from '@mantine/core';
 import QuizCountDown from './QuizCountDown';
+import { useDisclosure } from '@mantine/hooks';
 
 const Quiz = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const SECOND = 45000;
 
+  const [visible, { close, open }] = useDisclosure(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [isQuizCompleted, setIsQuizCompleted] = useState(false);
@@ -18,6 +20,7 @@ const Quiz = () => {
   const [userAnswers, setUserAnswers] = useState([]);
   const [selectedOption, setSelectedOption] = useState(null);
   const [correctOptionIndex, setCorrectOptionIndex] = useState(null);
+
 
   const [countdown] = useCountDown({
     targetDate,
@@ -70,16 +73,24 @@ const Quiz = () => {
     setUserAnswers([...userAnswers, newAnswer]);
     setSelectedOption({ index: optionIndex, isCorrect: option.isCorrect });
 
+
     if (option.isCorrect) {
       setScore(score + option.points);
     }
 
     setTimeout(() => {
+      open();
+    }, 2000);
+
+    setTimeout(() => {
       handleNextQuestion();
+      close()
     }, 3000);
+
   };
 
   const handleNextQuestion = () => {
+    close()
     const nextQuestion = currentQuestion + 1;
     if (nextQuestion < questions.length) {
       setCurrentQuestion(nextQuestion);
@@ -112,7 +123,8 @@ const Quiz = () => {
               <p className="mt-2 text-lg text-gray-800">{questions[currentQuestion].question}</p>
             </div>
           </div>
-          <div className="grid grid-cols-1 gap-4">
+          <div className="grid grid-cols-1 gap-4 relative">
+            <LoadingOverlay visible={visible} zIndex={1000} overlayProps={{ radius: "sm", blur: 0 }} />
             {questions[currentQuestion].options.map((option, index) => (
               <button
                 key={option.label}
