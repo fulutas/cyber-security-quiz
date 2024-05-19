@@ -115,8 +115,8 @@ const Quiz = () => {
             {questions[currentQuestion].options.map((option, index) => (
               <button
                 key={option.label}
-                className={`py-2 px-4 border bg-white shadow-sm text-gray-800 rounded transition duration-200
-                  ${selectedOption !== null && selectedOption.index === index ? (option.isCorrect ? 'bg-green-500' : 'bg-red-500') : ''}
+                className={`py-2 px-4 border bg-white shadow-sm text-gray-800 rounded transition duration-200 hover:bg-blue-200
+                  ${selectedOption !== null && selectedOption.index === index ? (option.isCorrect ? 'bg-green-500' : 'bg-red-400') : ''}
                   ${selectedOption !== null && selectedOption.index !== index && index === correctOptionIndex ? 'bg-green-500' : ''}
                 `}
                 onClick={() => handleAnswerOptionClick(option, index)}

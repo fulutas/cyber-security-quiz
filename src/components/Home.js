@@ -73,6 +73,7 @@ const Home = () => {
 							label="Email"
 							placeholder="your@email.com"
 							size="md"
+							type='mail'
 							key={form.key('email')}
 							{...form.getInputProps('email')}
 						/>
@@ -81,6 +82,8 @@ const Home = () => {
 							label="Yaş"
 							placeholder="Yaş"
 							size="md"
+							min={10}
+							max={70}
 							key={form.key('age')}
 							{...form.getInputProps('age')}
 						/>
