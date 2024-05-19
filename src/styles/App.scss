@@ -1,17 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Oleo+Script:wght@400;700&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&family=Vast+Shadow&display=swap");
 
 @font-face {
-	font-family: 'Titillium Regular';
-	src: url('../assets/fonts/TitilliumWeb-Regular.ttf')
+	font-family: "Titillium Regular";
+	src: url("../assets/fonts/TitilliumWeb-Regular.ttf");
 }
 
 @font-face {
-	font-family: 'Titillium SemiBold';
-	src: url('../assets/fonts/TitilliumWeb-SemiBold.ttf')
+	font-family: "Titillium SemiBold";
+	src: url("../assets/fonts/TitilliumWeb-SemiBold.ttf");
 }
 
 @font-face {
-	font-family: 'Titillium Light';
-	src: url('../assets/fonts/TitilliumWeb-Light.ttf')
+	font-family: "Titillium Light";
+	src: url("../assets/fonts/TitilliumWeb-Light.ttf");
 }
 
 @tailwind base;
@@ -24,14 +25,37 @@
 	padding: 0;
 }
 
-#root {
-	margin-left: 10px;
-	margin-right: 10px;
+html {
+	height: 100%;
+}
+
+header a {
+	font-family: "Oleo Script", system-ui;
 }
 
 body {
-	font-family: "Titillium Regular";
-	background-color: #F8FAFC !important;
+	height: 100%;
+	font-family: "Titillium Regular" !important;
+	// background-color: #f8fafc !important;
+
+	background: url("../assets/images/cyber-bg.jpg");
+	background-position: center center;
+	background-attachment: fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+canvas {
+	width: 100% !important;
+}
+
+.mantine-TextInput-label,
+.mantine-NumberInput-label,
+.mantine-RadioGroup-label {
+	font-weight: 600 !important;
 }
 
 .route-link {
@@ -53,6 +77,9 @@ body {
 	width: 100%;
 	max-width: 1340px;
 	margin: 0 auto;
-	min-height: calc(100vh - 50px);
+	min-height: calc(100vh - 98px);
 	margin-top: 30px;
+	// background-color: #f8fafc !important;
+	background: linear-gradient(315deg, #3a65cb 0%, #09162f 100%);
+	border-radius: 10px;
 }

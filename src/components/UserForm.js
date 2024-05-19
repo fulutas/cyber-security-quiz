@@ -38,16 +38,16 @@ const UserForm = () => {
 
   return (
     <section className="flex items-center justify-center flex-col mt-10">
-      <h2 className="text-2xl font-semibold leading-none tracking-tight">
+      <h2 className="text-3xl font-semibold leading-none tracking-tight text-white">
         Kullanıcı Bilgi Formu
       </h2>
-      <div className="grid w-full max-w-sm items-center gap-2 mt-5">
-        <form className="flex flex-col gap-2" onSubmit={form.onSubmit((values) => quizStart(values))}>
+      <div className="grid w-full max-w-sm items-center gap-2 mt-5 text-white">
+        <form className="flex flex-col gap-4" onSubmit={form.onSubmit((values) => quizStart(values))}>
           <TextInput
             withAsterisk
             label="Adınız"
             placeholder="Adınız"
-            size="md"
+            size="lg"
             key={form.key('name')}
             {...form.getInputProps('name')}
           />
@@ -55,7 +55,7 @@ const UserForm = () => {
             withAsterisk
             label="Soyadınız"
             placeholder="Soyadınız"
-            size="md"
+            size="lg"
             key={form.key('surname')}
             {...form.getInputProps('surname')}
 
@@ -64,7 +64,7 @@ const UserForm = () => {
             withAsterisk
             label="Email"
             placeholder="your@email.com"
-            size="md"
+            size="lg"
             type='mail'
             key={form.key('email')}
             {...form.getInputProps('email')}
@@ -73,7 +73,7 @@ const UserForm = () => {
             withAsterisk
             label="Yaş"
             placeholder="Yaş"
-            size="md"
+            size="lg"
             min={10}
             max={70}
             key={form.key('age')}
@@ -82,7 +82,7 @@ const UserForm = () => {
           <Radio.Group
             withAsterisk
             label="Cinsiyet"
-            size="md"
+            size="lg"
             key={form.key('gender')}
             {...form.getInputProps('gender')}
           >

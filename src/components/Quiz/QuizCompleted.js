@@ -24,7 +24,7 @@ const QuizCompleted = () => {
         width={400}
       />
       <div className="flex flex-col gap-5">
-        <p className="text-2xl text-gray-700">Anket başarıyla tamamlanmıştır. Teşekkürler!</p>
+        <p className="text-2xl text-white">Anket başarıyla tamamlanmıştır. Teşekkürler!</p>
         <Link to="/">
           <Button
             type="submit"

@@ -112,14 +112,20 @@ const Quiz = () => {
           <div className="mb-6">
             <div className="flex justify-between text-md text-gray-500 font-medium mb-2">
               <div className="flex flex-col">
-                <span className="font-bold">Merhaba, {`${location?.state?.userInfo?.name} ${location?.state?.userInfo?.surname}`}</span>
-                <span className="text-sm">{`${location?.state?.userInfo?.email}`}</span>
+                <span className="font-bold text-lg text-white">Merhaba, {`${location?.state?.userInfo?.name} ${location?.state?.userInfo?.surname}`}</span>
+                <span className="text-md text-gray-100">{`${location?.state?.userInfo?.email}`}</span>
               </div>
-              <span>Soru {currentQuestion + 1}/{questions.length}</span>
+              <span className='text-lg text-gray-200'>Soru {currentQuestion + 1}/{questions.length}</span>
             </div>
-            <div className="text-left mb-4 mt-7">
-              <p className="font-semibold text-xl">{questions[currentQuestion].scenario}</p>
-              <p className="mt-2 text-lg text-gray-800">{questions[currentQuestion].question}</p>
+            <div className="flex flex-col gap-5 text-left mb-4 mt-7">
+              <div>
+                <label className='text-orange-500 font-semibold'>Senaryo</label>
+                <p className="font-semibold text-xl text-white">{questions[currentQuestion].scenario}</p>
+              </div>
+              <div>
+                <label className='text-orange-500 font-semibold'>Soru</label>
+                <p className="font-semibold text-xl text-gray-100">{questions[currentQuestion].question}</p>
+              </div>
             </div>
           </div>
           <div className="grid grid-cols-1 gap-4 relative">
@@ -127,7 +133,7 @@ const Quiz = () => {
             {questions[currentQuestion].options.map((option, index) => (
               <button
                 key={option.label}
-                className={`py-2 px-4 border bg-white shadow-sm text-gray-800 rounded transition duration-200
+                className={`text-lg py-2 px-4 border bg-white shadow-sm text-gray-800 rounded transition duration-200 hover:bg-indigo-100
                 ${selectedOption !== null && selectedOption.index === index ? (option.isCorrect ? '!bg-green-400' : '!bg-red-500') : ''}
                   ${selectedOption !== null && selectedOption.index !== index && index === correctOptionIndex ? '!bg-green-400' : ''}
                 `}
@@ -145,7 +151,7 @@ const Quiz = () => {
             <Link to="/">
               <Button
                 type="submit"
-                color='gray'
+                color='gray.6'
                 size='md'
                 fullWidth
               >
