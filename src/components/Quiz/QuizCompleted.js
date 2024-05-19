@@ -1,6 +1,6 @@
 import React from 'react'
 import Lottie from 'react-lottie';
-import surveyCompletedAnimation from "../animations/survey-completed.json"
+import surveyCompletedAnimation from "../../animations/survey-completed.json"
 import Confetti from 'react-confetti'
 import { Link } from 'react-router-dom';
 import { Button } from '@mantine/core';

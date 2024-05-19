@@ -3,7 +3,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import Home from '../components/Home'
 import NotFoundPage from '../components/NotFoundPage'
 import Layout from '../layout'
-import Quiz from '../components/Quiz'
+import Quiz from '../components/Quiz/Quiz'
 
 
 const router = createBrowserRouter([

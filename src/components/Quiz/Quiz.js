@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useCountDown } from 'ahooks';
-import { questions } from '../data/questions';
+import { questions } from '../../data/questions';
 import QuizCompleted from './QuizCompleted';
 import { Button } from '@mantine/core';
+import QuizCountDown from './QuizCountDown';
 
 const Quiz = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const SECOND = 45000; // 30 saniye
+  const SECOND = 45000;
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
@@ -75,7 +76,7 @@ const Quiz = () => {
 
     setTimeout(() => {
       handleNextQuestion();
-    }, 3000); 
+    }, 3000);
   };
 
   const handleNextQuestion = () => {
@@ -115,12 +116,12 @@ const Quiz = () => {
             {questions[currentQuestion].options.map((option, index) => (
               <button
                 key={option.label}
-                className={`py-2 px-4 border bg-white shadow-sm text-gray-800 rounded transition duration-200 hover:bg-blue-200
-                  ${selectedOption !== null && selectedOption.index === index ? (option.isCorrect ? 'bg-green-500' : 'bg-red-400') : ''}
-                  ${selectedOption !== null && selectedOption.index !== index && index === correctOptionIndex ? 'bg-green-500' : ''}
+                className={`py-2 px-4 border bg-white shadow-sm text-gray-800 rounded transition duration-200
+                ${selectedOption !== null && selectedOption.index === index ? (option.isCorrect ? 'bg-green-400' : 'bg-red-500') : ''}
+                  ${selectedOption !== null && selectedOption.index !== index && index === correctOptionIndex ? 'bg-green-400' : ''}
                 `}
                 onClick={() => handleAnswerOptionClick(option, index)}
-                disabled={selectedOption !== null} 
+                disabled={selectedOption !== null}
               >
                 <div className="flex">
                   <p className="text-left"> {option.answer}</p>
@@ -128,9 +129,7 @@ const Quiz = () => {
               </button>
             ))}
           </div>
-          <div className="mt-10 text-center text-red-500 font-bold text-xl">
-            Kalan Süre: {Math.floor(countdown / 1000)} saniye
-          </div>
+          <QuizCountDown countdown={countdown} />
           <div className="mt-10">
             <Link to="/">
               <Button
