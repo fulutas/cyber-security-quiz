@@ -51,7 +51,7 @@ const UserForm = () => {
     if (!userFormQuery?.data) {
       return Swal.fire({
         title: 'Uyarı',
-        text: 'Bu email daha önce kullanılmış. Farklı bir email ile devam edebilirsiniz.',
+        text: 'Bu email daha önce kullanılmış. Farklı bir email ile deneyiniz.',
         icon: 'warning',
         confirmButtonText: 'Kapat'
       })
@@ -61,12 +61,6 @@ const UserForm = () => {
       setQuizStatus("started")
       setUserInfo(values)
     }
-
-    if (true) {
-      setQuizStatus("started")
-      setUserInfo(values)
-    }
-
   }
 
   const fetchCheckEmail = async () => {
