@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useCountDown } from 'ahooks';
 import { Button, LoadingOverlay } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
+import { motion } from 'framer-motion'
 
 import { questions } from '../../data/questions';
 
@@ -11,6 +12,12 @@ import QuizCompleted from './QuizCompleted';
 import QuizCountDown from './QuizCountDown';
 import QuizUserInfo from './QuizUserInfo';
 import QuizHelp from './QuizHelp';
+
+const itemAnimation = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { y: 5, opacity: 0 },
+}
 
 const Quiz = (props) => {
   const { quizStatus, setQuizStatus, userInfo } = props
@@ -116,7 +123,7 @@ const Quiz = (props) => {
     <div className="max-w-2xl mx-auto p-6">
       {quizStatus === "completed" && (
         <div className="text-2xl font-bold text-center">
-          <QuizCompleted setQuizStatus={setQuizStatus} />
+          <QuizCompleted setQuizStatus={setQuizStatus} userAnswers={userAnswers} />
         </div>
       )}
       {quizStatus === "started" && (
@@ -156,8 +163,14 @@ const Quiz = (props) => {
           <div className="grid grid-cols-1 gap-4 relative">
             <LoadingOverlay visible={visible} zIndex={1000} overlayProps={{ radius: "sm", blur: 0 }} />
             {questions[currentQuestion].options.map((option, index) => (
-              <button
+              <motion.button
+                id={index}
                 key={option.label}
+                variants={itemAnimation}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                transition={{ duration: 0.3, delay: index * 0.05 }}
                 className={`text-lg py-2 px-4 border bg-white shadow-sm text-gray-800 rounded transition duration-200 hover:bg-indigo-100
                 ${selectedOption !== null && selectedOption.index === index ? (option.isCorrect ? '!bg-green-400' : '!bg-red-500') : ''}
                   ${selectedOption !== null && selectedOption.index !== index && index === correctOptionIndex ? '!bg-green-400' : ''}
@@ -168,7 +181,7 @@ const Quiz = (props) => {
                 <div className="flex">
                   <p className="text-left"> {option.answer}</p>
                 </div>
-              </button>
+              </motion.button>
             ))}
           </div>
           <QuizCountDown countdown={countdown} />

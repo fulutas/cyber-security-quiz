@@ -25,7 +25,7 @@ const QuizHelp = (props) => {
   }
 
   return (
-    <Modal opened={opened} onClose={modalClose} size="xl" title={`${selectedDepartment.title} departmanından yardım hakkımı kullanıyorum.`}>
+    <Modal opened={opened} onClose={modalClose} size="xl" title={selectedDepartment.title ? `${selectedDepartment.title} departmanından yardım hakkımı kullanıyorum.` : ""}>
       {!selectedDepartment ? (
         <>
           <div className="flex justify-center items-center flex-col">

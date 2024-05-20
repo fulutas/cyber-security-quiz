@@ -4,7 +4,33 @@ import surveyCompletedAnimation from "../../animations/survey-completed.json"
 import Confetti from 'react-confetti'
 import { Button } from '@mantine/core';
 
-const QuizCompleted = ({ setQuizStatus }) => {
+const QuizCompleted = ({ setQuizStatus, userAnswers }) => {
+  console.log(userAnswers)
+
+  // Toplam puanı hesapla
+  const totalPoints = userAnswers.reduce((total, answer) => total + answer.selectedOption.points, 0);
+
+  // Puan bazlı mesaj ve stil belirle
+  let resultMessage = '';
+  let resultStyle = '';
+
+  if (totalPoints >= 85) {
+    resultMessage = 'Başarılı! 🥳';
+    resultStyle = 'text-green-500';
+  } else if (totalPoints >= 70) {
+    resultMessage = 'İyisin fakat mevzuata biraz daha hakim olmalısın. 😇';
+    resultStyle = 'text-yellow-500';
+  } else if (totalPoints >= 55) {
+    resultMessage = 'Kendini hızlıca geliştirmelisin, aksi halde kurumda veri ihlallerini senden biliriz 😆';
+    resultStyle = 'text-orange-500';
+  } else if (totalPoints >= 30) {
+    resultMessage = 'Başka bir iş mi baksan? 🥸🤣';
+    resultStyle = 'text-red-500';
+  } else {
+    resultMessage = 'İlişkimiz başlamadan bitmeli 🤭';
+    resultStyle = 'text-red-300';
+  }
+
   const defaultOptions = {
     loop: false,
     autoplay: true,
@@ -16,14 +42,16 @@ const QuizCompleted = ({ setQuizStatus }) => {
 
   return (
     <>
-      <Confetti />
+      {totalPoints >= 85 && <Confetti />}
       <Lottie
         options={defaultOptions}
         height={400}
         width={400}
       />
       <div className="flex flex-col gap-5">
-        <p className="text-2xl text-white">Anket başarıyla tamamlanmıştır. Teşekkürler!</p>
+        <p className="text-2xl text-white"> Test sonuçlarınıza göre size geri bildirimde bulunmak istiyoruz. İşte aldığınız sonuç:</p>
+        <p className={`text-2xl font-bold ${resultStyle}`}>{resultMessage}</p>
+        <p className="text-xl text-white">Toplam Puanınız: {totalPoints}</p>
         <Button
           type="submit"
           variant="gradient"
