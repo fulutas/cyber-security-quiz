@@ -3,7 +3,6 @@ import { createBrowserRouter } from 'react-router-dom'
 import Home from '../components/Home'
 import NotFoundPage from '../components/NotFoundPage'
 import Layout from '../layout'
-import Quiz from '../components/Quiz/Quiz'
 
 
 const router = createBrowserRouter([
@@ -17,12 +16,7 @@ const router = createBrowserRouter([
         id: "home",
         path: `/`,
         element: <Home />,
-      },
-      {
-        id: "quiz",
-        path: `/quiz`,
-        element: <Quiz />,
-      },
+      }
     ]
   },
 ])

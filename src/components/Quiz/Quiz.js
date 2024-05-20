@@ -1,25 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+
 import { useCountDown } from 'ahooks';
-import { questions } from '../../data/questions';
-import QuizCompleted from './QuizCompleted';
 import { Button, LoadingOverlay } from '@mantine/core';
-import QuizCountDown from './QuizCountDown';
 import { useDisclosure } from '@mantine/hooks';
 
-const Quiz = () => {
+import { questions } from '../../data/questions';
+
+import QuizCompleted from './QuizCompleted';
+import QuizCountDown from './QuizCountDown';
+import QuizUserInfo from './QuizUserInfo';
+import QuizHelp from './QuizHelp';
+
+const Quiz = (props) => {
+  const { quizStatus, setQuizStatus, userInfo } = props
+
   const navigate = useNavigate();
-  const location = useLocation();
-  const SECOND = 45000;
+  const SECOND = 4500000;
+  const BONUS_HELP_COUNT = 2;
 
   const [visible, { close, open }] = useDisclosure(false);
+  const [opened, { close: modalClose, open: modalOpen }] = useDisclosure(false);
+
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
-  const [isQuizCompleted, setIsQuizCompleted] = useState(false);
   const [targetDate, setTargetDate] = useState(null);
   const [userAnswers, setUserAnswers] = useState([]);
   const [selectedOption, setSelectedOption] = useState(null);
   const [correctOptionIndex, setCorrectOptionIndex] = useState(null);
+  const [bonusHelpCount, setBonusHelpCount] = useState(BONUS_HELP_COUNT);
 
   const [countdown] = useCountDown({
     targetDate,
@@ -32,8 +41,8 @@ const Quiz = () => {
   });
 
   useEffect(() => {
-    if (!location?.state?.userInfo) navigate("/")
-  }, [location?.state, navigate]);
+    if (!userInfo) navigate("/")
+  }, [userInfo, navigate]);
 
   useEffect(() => {
     if (currentQuestion === 0) {
@@ -41,8 +50,10 @@ const Quiz = () => {
     }
 
     const handleBeforeUnload = (event) => {
+      const message = 'Çıkmak istediğinizden emin misiniz? Tüm ilerlemeniz kaybolacak.';
       event.preventDefault();
-      event.returnValue = 'Çıkmak istediğinizden emin misiniz? Tüm ilerlemeniz kaybolacak.';
+      event.returnValue = message;
+      return message;
     };
 
     window.addEventListener('beforeunload', handleBeforeUnload);
@@ -96,34 +107,48 @@ const Quiz = () => {
       setTargetDate(Date.now() + SECOND);
       setSelectedOption(null);
     } else {
-      setIsQuizCompleted(true);
+      setQuizStatus("completed");
       // Burada API isteği yapılacak.
     }
   };
 
   return (
     <div className="max-w-2xl mx-auto p-6">
-      {isQuizCompleted ? (
+      {quizStatus === "completed" && (
         <div className="text-2xl font-bold text-center">
-          <QuizCompleted />
+          <QuizCompleted setQuizStatus={setQuizStatus} />
         </div>
-      ) : (
+      )}
+      {quizStatus === "started" && (
         <>
           <div className="mb-6">
             <div className="flex justify-between text-md text-gray-500 font-medium mb-2">
+              <QuizUserInfo data={userInfo} />
               <div className="flex flex-col">
-                <span className="font-bold text-lg text-white">Merhaba, {`${location?.state?.userInfo?.name} ${location?.state?.userInfo?.surname}`}</span>
-                <span className="text-md text-gray-100">{`${location?.state?.userInfo?.email}`}</span>
+                <span className='text-lg text-gray-200 mt-3 self-end'>Soru {currentQuestion + 1}/{questions.length}</span>
+                <div className="flex gap-1">
+                  {bonusHelpCount > 0 ? (
+                    <>
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 text-yellow-500 animate-pulse">
+                        <path strokeLineCap="round" strokeLinejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
+                      </svg><span
+                        onClick={() => bonusHelpCount > 0 && modalOpen()}
+                        className={`text-lg text-yellow-400 font-semibold hover:underline cursor-pointer`}
+                      >
+                        {bonusHelpCount} joker hakkınız var.
+                      </span>
+                    </>
+                  ) : <span className={`text-lg text-gray-200 font-semibold`}>Joker hakkınız kalmadı :(</span>}
+                </div>
               </div>
-              <span className='text-lg text-gray-200'>Soru {currentQuestion + 1}/{questions.length}</span>
             </div>
             <div className="flex flex-col gap-5 text-left mb-4 mt-7">
               <div>
-                <label className='text-orange-500 font-semibold'>Senaryo</label>
+                <label className='text-orange-500 text-lg font-semibold'>Senaryo</label>
                 <p className="font-semibold text-xl text-white">{questions[currentQuestion].scenario}</p>
               </div>
               <div>
-                <label className='text-orange-500 font-semibold'>Soru</label>
+                <label className='text-orange-500 text-lg font-semibold'>Soru</label>
                 <p className="font-semibold text-xl text-gray-100">{questions[currentQuestion].question}</p>
               </div>
             </div>
@@ -148,17 +173,24 @@ const Quiz = () => {
           </div>
           <QuizCountDown countdown={countdown} />
           <div className="mt-10">
-            <Link to="/">
-              <Button
-                type="submit"
-                color='gray.6'
-                size='md'
-                fullWidth
-              >
-                Vazgeç
-              </Button>
-            </Link>
+            <Button
+              type="submit"
+              color='gray.6'
+              size='md'
+              onClick={() => setQuizStatus("intro")}
+              fullWidth
+            >
+              Vazgeç
+            </Button>
           </div>
+          <QuizHelp
+            opened={opened}
+            modalClose={modalClose}
+            currentQuestion={currentQuestion}
+            bonusHelpCount={bonusHelpCount}
+            setBonusHelpCount={setBonusHelpCount}
+            userInfo={userInfo}
+          />
         </>
       )}
     </div>

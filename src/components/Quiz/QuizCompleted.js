@@ -2,10 +2,9 @@ import React from 'react'
 import Lottie from 'react-lottie';
 import surveyCompletedAnimation from "../../animations/survey-completed.json"
 import Confetti from 'react-confetti'
-import { Link } from 'react-router-dom';
 import { Button } from '@mantine/core';
 
-const QuizCompleted = () => {
+const QuizCompleted = ({ setQuizStatus }) => {
   const defaultOptions = {
     loop: false,
     autoplay: true,
@@ -25,15 +24,14 @@ const QuizCompleted = () => {
       />
       <div className="flex flex-col gap-5">
         <p className="text-2xl text-white">Anket başarıyla tamamlanmıştır. Teşekkürler!</p>
-        <Link to="/">
-          <Button
-            type="submit"
-            variant="gradient"
-            size='md'
-          >
-            Anasayfaya Dön
-          </Button>
-        </Link>
+        <Button
+          type="submit"
+          variant="gradient"
+          size='md'
+          onClick={() => setQuizStatus("intro")}
+        >
+          Anasayfaya Dön
+        </Button>
       </div>
     </>
   )
