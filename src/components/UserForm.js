@@ -48,7 +48,7 @@ const UserForm = () => {
       })
     }
 
-    if (!userFormQuery?.data) {
+    if (userFormQuery?.data === false) {
       return Swal.fire({
         title: 'Uyarı',
         text: 'Bu email daha önce kullanılmış. Farklı bir email ile deneyiniz.',
