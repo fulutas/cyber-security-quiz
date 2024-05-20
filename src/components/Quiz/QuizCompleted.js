@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Lottie from 'react-lottie';
 import surveyCompletedAnimation from "../../animations/survey-completed.json"
 import Confetti from 'react-confetti'
 import { Button } from '@mantine/core';
+import { api } from '../../api/endpoints';
 
-const QuizCompleted = ({ setQuizStatus, userAnswers }) => {
-  console.log(userAnswers)
+const QuizCompleted = ({ quizStatus, setQuizStatus, userAnswers, userInfo }) => {
 
   // Toplam puanı hesapla
   const totalPoints = userAnswers.reduce((total, answer) => total + answer.selectedOption.points, 0);
@@ -39,6 +39,42 @@ const QuizCompleted = ({ setQuizStatus, userAnswers }) => {
       preserveAspectRatio: "xMidYMid slice"
     }
   };
+
+  const postData = {
+    "Name": userInfo?.name,
+    "Surname": userInfo?.surname,
+    "Email": userInfo?.email,
+    "Gender": userInfo?.gender === "male" ? "1" : "2",
+    "Age": String(userInfo?.age),
+    "Answers": userAnswers?.map(answer => ({
+      "Question": String(answer?.questionId),
+      "QuestionTitle": String(answer?.question),
+      "Score": String(answer?.selectedOption.points)
+    }))
+  }
+
+  async function handleSaveSurvey() {
+    return fetch(api.SaveSurvey, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(postData),
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }
+
+  useEffect(() => {
+    if (quizStatus === "completed") {
+      handleSaveSurvey()
+    }
+  }, [quizStatus]);
 
   return (
     <>

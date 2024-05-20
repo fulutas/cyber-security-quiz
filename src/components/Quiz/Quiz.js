@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { useCountDown } from 'ahooks';
 import { Button, LoadingOverlay } from '@mantine/core';
@@ -23,7 +23,7 @@ const Quiz = (props) => {
   const { quizStatus, setQuizStatus, userInfo } = props
 
   const navigate = useNavigate();
-  const SECOND = 4500000;
+  const SECOND = 45000;
   const BONUS_HELP_COUNT = 2;
 
   const [visible, { close, open }] = useDisclosure(false);
@@ -106,6 +106,7 @@ const Quiz = (props) => {
 
   };
 
+
   const handleNextQuestion = () => {
     close()
     const nextQuestion = currentQuestion + 1;
@@ -115,15 +116,15 @@ const Quiz = (props) => {
       setSelectedOption(null);
     } else {
       setQuizStatus("completed");
-      // Burada API isteği yapılacak.
     }
   };
+
 
   return (
     <div className="max-w-2xl mx-auto p-6">
       {quizStatus === "completed" && (
         <div className="text-2xl font-bold text-center">
-          <QuizCompleted setQuizStatus={setQuizStatus} userAnswers={userAnswers} />
+          <QuizCompleted quizStatus={quizStatus}  setQuizStatus={setQuizStatus} userAnswers={userAnswers} userInfo={userInfo} />
         </div>
       )}
       {quizStatus === "started" && (
@@ -137,7 +138,7 @@ const Quiz = (props) => {
                   {bonusHelpCount > 0 ? (
                     <>
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 text-yellow-500 animate-pulse">
-                        <path strokeLineCap="round" strokeLinejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
                       </svg><span
                         onClick={() => bonusHelpCount > 0 && modalOpen()}
                         className={`text-lg text-yellow-400 font-semibold hover:underline cursor-pointer`}
