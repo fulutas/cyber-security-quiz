@@ -1,4 +1,4 @@
 export const api = {
-  "CheckEMail": "http://basvuru.ozelbogaziciegitim.com/HackGame/CheckEMail/",
-  "SaveSurvey": "http://basvuru.ozelbogaziciegitim.com/HackGame/save"
+  "CheckEMail": "https://basvuru.ozelbogaziciegitim.com/HackGame/CheckEMail/",
+  "SaveSurvey": "https://basvuru.ozelbogaziciegitim.com/HackGame/save"
 }
