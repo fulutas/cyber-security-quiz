@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
 import { Button, Group, Radio, TextInput } from '@mantine/core';
 import { NumberInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import Quiz from './Quiz/Quiz';
+import { useQuery } from '@tanstack/react-query';
+import { api } from '../api/endpoints';
+import Swal from 'sweetalert2';
 
 const UserForm = () => {
-  const navigate = useNavigate();
   const [quizStatus, setQuizStatus] = useState("intro");
   const [userInfo, setUserInfo] = useState(null);
 
@@ -19,26 +20,69 @@ const UserForm = () => {
       gender: '',
       age: ''
     },
-    // validate: {
-    //   name: (value) => value.length === 0 ? "Bu alan zorunludur." : null,
-    //   surname: (value) => value.length === 0 ? "Bu alan zorunludur." : null,
-    //   gender: (value) => value.length === 0 ? "Bu alan zorunludur." : null,
-    //   age: (value) => value.length === 0 ? "Bu alan zorunludur." : null,
-    //   email: (value) => {
-    //     if (value.length === 0) {
-    //       return "Bu alan zorunludur.";
-    //     } else if (!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/.test(value)) {
-    //       return "Hatalı email formatı!";
-    //     }
-    //     return null;
-    //   },
-    // },
+    validate: {
+      name: (value) => value.length === 0 ? "Bu alan zorunludur." : null,
+      surname: (value) => value.length === 0 ? "Bu alan zorunludur." : null,
+      gender: (value) => value.length === 0 ? "Bu alan zorunludur." : null,
+      age: (value) => value.length === 0 ? "Bu alan zorunludur." : null,
+      email: (value) => {
+        if (value.length === 0) {
+          return "Bu alan zorunludur.";
+        } else if (!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/.test(value)) {
+          return "Hatalı email formatı!";
+        }
+        return null;
+      },
+    },
   });
 
   const quizStart = (values) => {
-    setQuizStatus("started")
-    setUserInfo(values)
+    if (!userFormQuery.isFetching) userFormQuery.refetch();
+
+    if (userFormQuery?.data) {
+      return Swal.fire({
+        title: 'Uyarı',
+        text: 'Bu email daha önce kullanılmış. Farklı bir email ile devam edebilirsiniz.',
+        icon: 'warning',
+        confirmButtonText: 'Kapat'
+      })
+    }
+
+    if (userFormQuery.isError) {
+      return Swal.fire({
+        title: 'Hata!',
+        text: 'Beklenmedik bir hata oluştu.',
+        icon: 'error',
+        confirmButtonText: 'Kapat'
+      })
+    }
+
+    if (userFormQuery.data) {
+      setQuizStatus("started")
+      setUserInfo(values)
+    }
+
   }
+
+  const fetchCheckEmail = async () => {
+    try {
+      const response = await fetch(`${api.CheckEMail}${form.getValues().email}`);
+      if (!response.ok) {
+        const errorCode = response.status;
+        throw new Error(`An error occurred: ${errorCode}`);
+      }
+      return response.json();
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const userFormQuery = useQuery({
+    queryKey: ["user-form"],
+    enabled: false,
+    retry: 1,
+    queryFn: () => fetchCheckEmail()
+  })
 
   return (
     <>
@@ -102,6 +146,8 @@ const UserForm = () => {
                 type="submit"
                 variant="gradient"
                 fullWidth
+                loading={userFormQuery.isFetching}
+                disabled={userFormQuery.isFetching}
                 size='md'
                 gradient={{ from: 'rgba(49, 145, 62, 1)', to: 'lime', deg: 24 }}
               >

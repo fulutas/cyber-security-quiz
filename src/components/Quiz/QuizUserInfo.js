@@ -7,7 +7,7 @@ const QuizUserInfo = ({ data }) => {
 
   return (
     <div className="flex">
-      <img src={userImage} width={80} />
+      <img src={userImage} width={80} alt="user-image" />
       <div className="flex flex-col mt-3 ml-5">
         <span className="font-bold text-lg text-white">Merhaba, {`${data?.name} ${data?.surname}`}</span>
         <span className="text-lg text-gray-100">{`${data?.email}`}</span>
