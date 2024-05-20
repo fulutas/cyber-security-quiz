@@ -37,30 +37,30 @@ const UserForm = () => {
   });
 
   const quizStart = (values) => {
-    // if (!userFormQuery.isFetching) userFormQuery.refetch();
+    userFormQuery.refetch();
 
-    // if (userFormQuery?.data) {
-    //   return Swal.fire({
-    //     title: 'Uyarı',
-    //     text: 'Bu email daha önce kullanılmış. Farklı bir email ile devam edebilirsiniz.',
-    //     icon: 'warning',
-    //     confirmButtonText: 'Kapat'
-    //   })
-    // }
+    if (userFormQuery.isError || !userFormQuery?.data === undefined) {
+      return Swal.fire({
+        title: 'Hata!',
+        text: 'Beklenmedik bir hata oluştu.',
+        icon: 'error',
+        confirmButtonText: 'Kapat'
+      })
+    }
 
-    // if (userFormQuery.isError) {
-    //   return Swal.fire({
-    //     title: 'Hata!',
-    //     text: 'Beklenmedik bir hata oluştu.',
-    //     icon: 'error',
-    //     confirmButtonText: 'Kapat'
-    //   })
-    // }
+    if (!userFormQuery?.data) {
+      return Swal.fire({
+        title: 'Uyarı',
+        text: 'Bu email daha önce kullanılmış. Farklı bir email ile devam edebilirsiniz.',
+        icon: 'warning',
+        confirmButtonText: 'Kapat'
+      })
+    }
 
-    // if (userFormQuery.data) {
-    //   setQuizStatus("started")
-    //   setUserInfo(values)
-    // }
+    if (userFormQuery.data) {
+      setQuizStatus("started")
+      setUserInfo(values)
+    }
 
     if (true) {
       setQuizStatus("started")
