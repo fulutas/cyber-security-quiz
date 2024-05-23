@@ -1,186 +1,7 @@
 export const questions = [
   {
     questionId: 1,
-    scenario: "Bir çalışan, 'Acil: Şifrenizi değiştirmelisiniz, lütfen aşağıdaki bağlantıya tıklayın' talep eden bir e-posta mesajı göreceksiniz.",
-    question: "Bu tür e-postalara karşı ilk yapılması gereken davranış aşağıdakilerden hangisidir?",
-    options: [
-      {
-        label: "A",
-        answer: "Hiçbir zaman doğrulanmayan veya güvenilmeyen kaynaklardan gelen bağlantılara tıklamamak",
-        isCorrect: true,
-        points: 10
-      },
-      {
-        label: "B",
-        answer: "Güncelleme için şifre gerekiyorsa doğrudan şirketin güvenli web sistemini ziyaret etmek",
-        isCorrect: false,
-        points: 0
-      },
-      {
-        label: "C",
-        answer: "IT departmanıyla iletişim sağlayarak şüpheli e-postaların incelenmesi sağlamak",
-        isCorrect: false,
-        points: 0
-      },
-      {
-        label: "D",
-        answer: "E-postada belirtilen telefon numarasını arayarak e-posta doğruluğunu teyit etmek",
-        isCorrect: false,
-        points: 0
-      },
-      {
-        label: "E",
-        answer: "URL'nin gerçekte şirketin resmi web sitesiyle ulaşılabilir olduğundan emin olmak için e-postadaki bağlantısına tıklamak",
-        isCorrect: false,
-        points: 0
-      },
-    ],
-  },
-  {
-    questionId: 2,
-    scenario: "Bir çalışan gelen özel mesajda 'Bir ödül kazandınız! Kişisel bilgilerinizi hemen açın ve ödülünüzü alın!' böyle bir istekle karşılaşır.",
-    question: "Sosyal medyadaki bu mesajlara nasıl yanıt verirsiniz?",
-    options: [
-      {
-        label: "A",
-        answer: "Tanımadığım kişilerden gelen mesajları reddeder veya IT'ye bildiririm",
-        isCorrect: false,
-        points: 0
-      },
-      {
-        label: "B",
-        answer: "Kişisel bilgilerimi asla sosyal medya üzerinden paylaşmam",
-        isCorrect: false,
-        points: 0
-      },
-      {
-        label: "C",
-        answer: "Çevrimiçi olan ödüllere şüpheyle yaklaşır bu hediyelerin gerçekliğini araştırırım",
-        isCorrect: true,
-        points: 10
-      },
-      {
-        label: "D",
-        answer: "Şüpheli mesajları şirket politikalarına uygun olarak BT departmanına bildiririm",
-        isCorrect: false,
-        points: 0
-      },
-      {
-        label: "E",
-        answer: "Sosyal medya platformlarının güvenlik ayarlarında mahremiyetin korunmasına yönelik düzenlemeler yaparım",
-        isCorrect: false,
-        points: 0
-      },
-    ],
-  },
-  {
-    questionId: 3,
-    scenario: "Bir çalışana gelen telefon aramasında 'Bankanızda bir sorun var, lütfen hesap bilgilerinizi kontrol edin' diye bir taleple karşılaşır.",
-    question: "Bu şüpheli telefon görüşmeleriyle nasıl başa çıkmalısınız?",
-    options: [
-      {
-        label: "A",
-        answer: "Telefonla yapılan bu taleplere yanıt olarak asla kişisel veya mali bilgilerimi açıklamam",
-        isCorrect: true,
-        points: 10
-      },
-      {
-        label: "B",
-        answer: "Bankamın resmi müşteri hizmetleriyle telefonla durumun incelenmesini sağlarım",
-        isCorrect: false,
-        points: 0
-      },
-      {
-        label: "C",
-        answer: "Tanımadığım numaralardan gelen çağrılara cevap vermeyerek otomatik reddederim",
-        isCorrect: false,
-        points: 0
-      },
-      {
-        label: "D",
-        answer: "Şüpheli telefon görüşmelerini bilgi işlem dairesine bildirerek şirketin güvenlik politikalarını uygun davranırım",
-        isCorrect: false,
-        points: 0
-      },
-    ],
-  },
-  {
-    questionId: 4,
-    scenario: "Ofiste çalışırken, ziyarete gelen yabancı bir kişi 'Bilgisayarınızdan bir konuya bakmak için kısa bir süreliğine alabilir miyim?' diye sordu böyle bir istek karşısında nasıl davranılmalı.",
-    question: "Ofiste güvenlik açısından dikkat edilmesi gereken hususlar nelerdir?",
-    options: [
-      {
-        label: "A",
-        answer: "Kişisel veya iş bilgisayarlarınızı asla yabancılarla paylaşmayın.",
-        isCorrect: true,
-        points: 10
-      },
-      {
-        label: "B",
-        answer: "Ofis cihazlarında izinsiz girişlere erişimin engellenmesi.",
-        isCorrect: false,
-        points: 0
-      },
-      {
-        label: "C",
-        answer: "Tanımadığınız misafirlerin ofisindeki bilgi işlem departmanına raporlanarak binaya erişimin engellenmesi.",
-        isCorrect: false,
-        points: 0
-      },
-      {
-        label: "D",
-        answer: "Bilgisayardan ayrılıp masanıza ara verdiğinizde bağlantıyı kapatın veya şifreleyerek kalkın.",
-        isCorrect: false,
-        points: 0
-      },
-      {
-        label: "E",
-        answer: "Ofiste güvenlik politikalarını düzenli olarak gözden geçirmek ve çalışanlara farkındalık eğitimleri düzenlemek.",
-        isCorrect: false,
-        points: 0
-      },
-    ],
-  },
-  {
-    questionId: 5,
-    scenario: "İşyerindeki bir kutlama sırasında bir çalışan, Wi-Fi'nize bağlanarak internette gezinebileceğinizi söyledi. programın bir açıklamasını okuyacaksınız:",
-    question: "Büyük etkinlikler sırasında Wi-Fi'nizin miktarını sağlamak için ne gibi önlemler alınıyor?",
-    options: [
-      {
-        label: "A",
-        answer: "Kişisel bilgileriniz, Wi-Fi ağına bağlıyken, büyük etkinliklerde, güvenlik perspektifini önlemeden asla paylaşmayın.",
-        isCorrect: false,
-        points: 0
-      },
-      {
-        label: "B",
-        answer: "Büyük etkinliklerde Wi-Fi ağına bağlanmadan önce BT sistemi tarafından onaylı yetkili ağların seçilmesi.",
-        isCorrect: true,
-        points: 10
-      },
-      {
-        label: "C",
-        answer: "Kamuya açık alanlarda Wi-Fi kullanırken SSL şifreleme gibi güvenlik protokollerini destekleyen ağların seçilmesi önemlidir.",
-        isCorrect: false,
-        points: 0
-      },
-      {
-        label: "D",
-        answer: "Halka açık yerlerde Wi-Fi kullanırken, otomatik düğme seçenekleri devre dışı bırakma ağa manuel olarak bağlanmalısınız.",
-        isCorrect: false,
-        points: 0
-      },
-      {
-        label: "E",
-        answer: "Büyük etkinliklerde Wi-Fi ağına bağlanırken güvenlik duvarları ve anti-virüs yazılımı gibi korumanın her zaman aktif olması.",
-        isCorrect: false,
-        points: 0
-      },
-    ],
-  },
-  {
-    questionId: 6,
-    scenario: "Yeni çalışanların fidye yazılımının sonuçlarını değerlendirme kapasitesini test edin.",
+    scenario: "",
     question: "Fidye yazılımının bir teknoloji şirketinin itibarı üzerindeki olası etkileri nelerdir?",
     options: [
       {
@@ -216,8 +37,8 @@ export const questions = [
     ],
   },
   {
-    questionId: 7,
-    scenario: "Yeni çalışanın kodkilit hakkında bilgisi test edilir.",
+    questionId: 2,
+    scenario: "",
     question: "KodKilit fidye yazılımıyla baş etmenin en etkili yöntemi nedir?",
     options: [
       {
@@ -247,8 +68,8 @@ export const questions = [
     ],
   },
   {
-    questionId: 8,
-    scenario: "Yeni çalışanların fidye yazılımının potansiyel etkisini düşünüp düşünmediğini kontrol edin.",
+    questionId: 3,
+    scenario: "",
     question: "Fidye yazılımları nedeniyle mali zarara uğrayan teknoloji şirketlerinin olası etkileri nelerdir?",
     options: [
       {
@@ -271,7 +92,7 @@ export const questions = [
       },
       {
         label: "D",
-        answer: "Müşteri Katılımı.",
+        answer: "Müşteri katılımı.",
         isCorrect: false,
         points: 0
       },
@@ -284,9 +105,9 @@ export const questions = [
     ],
   },
   {
-    questionId: 9,
-    scenario: "Personele fidye yazılımın etkilerinden nasıl az etkileneceği test edilmektedir.",
-    question: "Fidye yazılımının etkileri nasıl azaltılabilir?",
+    questionId: 4,
+    scenario: "",
+    question: "Fidye yazılımının etkilerini azaltmak için hangi yöntemler kullanılabilir?",
     options: [
       {
         label: "A",
@@ -296,34 +117,34 @@ export const questions = [
       },
       {
         label: "B",
-        answer: "Yazılıma eklenen şüpheli e-postaları açmayın ve bilinmeyen kaynaklardan hiçbir şey indirmeyin.",
+        answer: "Şüpheli e-postaları açmamak ve bilinmeyen kaynaklardan hiçbir şey indirmemek.",
         isCorrect: false,
         points: 0
       },
       {
         label: "C",
-        answer: "Çalışanların sürekli güvenlik eğitimi.",
+        answer: "Çalışanlara sürekli güvenlik eğitimi vermek.",
         isCorrect: false,
         points: 0
       },
       {
         label: "D",
-        answer: "Trafik düzenlerinin sürekli incelenmesi ve anormalliklerin tanınması.",
+        answer: "Trafik düzenlerini sürekli incelemek ve anormallikleri tanımak.",
         isCorrect: false,
         points: 0
       },
       {
         label: "E",
-        answer: "Bu seçeneklerin tümü geçerlidir.",
+        answer: "Hepsi Doğru",
         isCorrect: true,
         points: 10
       },
     ],
   },
   {
-    questionId: 10,
-    scenario: "Yeni çalışanların fidye yazılımının nasıl yayıldığına dair bilgisi olup olmadığını kontrol edin.",
-    question: "Bu genellikle nasıl yayılır?",
+    questionId: 5,
+    scenario: "",
+    question: "Fidye yazılımı genellikle nasıl yayılır?",
     options: [
       {
         label: "A",
@@ -333,7 +154,7 @@ export const questions = [
       },
       {
         label: "B",
-        answer: "E-posta konuşmalarından.",
+        answer: "E-posta yazışmalarından.",
         isCorrect: true,
         points: 10
       },
@@ -351,7 +172,186 @@ export const questions = [
       },
       {
         label: "E",
-        answer: "Emin değilim.",
+        answer: "Ofisin tarayıcısından.",
+        isCorrect: false,
+        points: 0
+      },
+    ],
+  },
+  {
+    questionId: 6,
+    scenario: "",
+    question: "Bir çalışana e-posta yoluyla 'Acil olarak şifrenizi güncellemeniz gerekmektedir, lütfen aşağıdaki bağlantıyı kullanın' şeklinde bir istek iletildiğinde izlenecek en doğru prosedür aşağıdakilerden hangisidir?",
+    options: [
+      {
+        label: "A",
+        answer: "Onaylanmamış veya güvenilir olmayan kaynaklardan gelen bağlantılara asla tıklanmamalıdır.",
+        isCorrect: true,
+        points: 10
+      },
+      {
+        label: "B",
+        answer: "Şifre güncellemesi gerektiğinde, şirketin resmi ve güvenli web portalı doğrudan ziyaret edilmelidir.",
+        isCorrect: false,
+        points: 0
+      },
+      {
+        label: "C",
+        answer: "Bilgi Teknolojileri departmanı ile iletişime geçilerek, şüpheli e-postaların analizi talep edilmelidir.",
+        isCorrect: false,
+        points: 0
+      },
+      {
+        label: "D",
+        answer: "E-postada verilen telefon numarasını arayarak, e-postanın doğruluğu teyit edilmelidir.",
+        isCorrect: false,
+        points: 0
+      },
+      {
+        label: "E",
+        answer: "E-postadaki bağlantının gerçekten şirketin resmi web sitesine yönlendirdiğinden emin olmak için tıklanmalıdır.",
+        isCorrect: false,
+        points: 0
+      },
+    ],
+  },
+  {
+    questionId: 7,
+    scenario: "",
+    question: "Bir çalışan, sosyal medya üzerinden 'Tebrikler! Bir ödül kazandınız! Kişisel bilgilerinizi girerek ödülünüzü hemen alın!' şeklinde bir taleple karşılaştığında sergilemesi gereken ilk davranış aşağıdakilerden hangisidir?",
+    options: [
+      {
+        label: "A",
+        answer: "Bilinmeyen kişiler tarafından gönderilen mesajları dikkate almamak veya Bilgi Teknolojileri departmanına bildirmek.",
+        isCorrect: false,
+        points: 0
+      },
+      {
+        label: "B",
+        answer: "Kişisel bilgileri sosyal medya aracılığıyla paylaşmamak.",
+        isCorrect: false,
+        points: 0
+      },
+      {
+        label: "C",
+        answer: "İnternet üzerinden sunulan ödüllere şüphe ile yaklaşmak ve bu tür tekliflerin doğruluğunu sorgulamak.",
+        isCorrect: true,
+        points: 10
+      },
+      {
+        label: "D",
+        answer: "Şüpheli mesajları, şirketin belirlediği prosedürlere uygun olarak Bilgi Teknolojileri departmanına iletmek.",
+        isCorrect: false,
+        points: 0
+      },
+      {
+        label: "E",
+        answer: "Sosyal medya platformlarının güvenlik ayarlarını, mahremiyeti koruyacak şekilde düzenlemek.",
+        isCorrect: false,
+        points: 0
+      },
+    ],
+  },
+  {
+    questionId: 8,
+    scenario: "",
+    question: "Bir çalışanın, 'Bankanızda bir sorun mevcut, lütfen hesap bilgilerinizi gözden geçirin' şeklinde bir taleple karşılaştığı telefon araması durumunda uygulaması gereken en uygun prosedür aşağıdakilerden hangisidir?",
+    options: [
+      {
+        label: "A",
+        answer: "Telefon yoluyla iletilen bu tür taleplere karşılık olarak kişisel veya finansal bilgiler asla ifşa edilmemelidir.",
+        isCorrect: true,
+        points: 10
+      },
+      {
+        label: "B",
+        answer: "Bankanın resmi müşteri hizmetleri ile irtibata geçerek durumun detaylı bir incelemesini talep etmek.",
+        isCorrect: false,
+        points: 0
+      },
+      {
+        label: "C",
+        answer: "Tanınmayan numaralardan gelen aramalara yanıt vermemek ve otomatik olarak reddetmek.",
+        isCorrect: false,
+        points: 0
+      },
+      {
+        label: "D",
+        answer: "Şüpheli telefon görüşmelerini, bilgi işlem birimine rapor ederek şirketin güvenlik politikalarına uygun hareket etmek.",
+        isCorrect: false,
+        points: 0
+      },
+    ],
+  },
+  {
+    questionId: 9,
+    scenario: "",
+    question: "Ofis ortamında çalışılırken, ziyaretçi olarak gelen ve 'Bilgisayarınızı kısa süreliğine kullanabilir miyim?' diye talepte bulunan bir yabancı karşısında alınması gereken ilk güvenlik önlemi aşağıdakilerden hangisidir?",
+    options: [
+      {
+        label: "A",
+        answer: "Kişisel veya kurumsal bilgisayarlar hiçbir zaman yabancı şahıslarla paylaşılmamalıdır.",
+        isCorrect: true,
+        points: 10
+      },
+      {
+        label: "B",
+        answer: "Ofis ekipmanlarının izinsiz kullanımını önlemek için gerekli güvenlik tedbirleri alınmalıdır.",
+        isCorrect: false,
+        points: 0
+      },
+      {
+        label: "C",
+        answer: "Tanımlanamayan ziyaretçilerin, bilgi işlem departmanına bildirilmesi ve ofise erişimlerinin kontrol altına alınması sağlanmalıdır.",
+        isCorrect: false,
+        points: 0
+      },
+      {
+        label: "D",
+        answer: "Bilgisayar başından ayrıldığınızda, cihazın kilitlemesi veya güvenlik duvarı ile korunması gerekmektedir.",
+        isCorrect: false,
+        points: 0
+      },
+      {
+        label: "E",
+        answer: "Ofis güvenlik politikalarının periyodik olarak gözden geçirilmesi ve çalışanlara yönelik güvenlik bilinci eğitimlerinin düzenlenmesi önemlidir.",
+        isCorrect: false,
+        points: 0
+      },
+    ],
+  },
+  {
+    questionId: 10,
+    scenario: "",
+    question: "Bir iş yerindeki kutlama gibi büyük organizasyonlar sırasında, Wi-Fi ağının güvenliğini sağlamak amacıyla alınması gereken tedbir aşağıdakilerden hangisidir?",
+    options: [
+      {
+        label: "A",
+        answer: "Kişisel bilgiler, Wi-Fi ağına bağlandığınızda, özellikle büyük etkinliklerde, güvenlik önlemleri göz ardı edilmeden paylaşılmamalıdır.",
+        isCorrect: false,
+        points: 0
+      },
+      {
+        label: "B",
+        answer: "Büyük etkinlikler öncesinde, Wi-Fi ağına bağlanmak için Bilgi Teknolojileri (BT) sistemi tarafından onaylanmış ve yetkilendirilmiş ağların tercih edilmesi gerekmektedir.",
+        isCorrect: true,
+        points: 10
+      },
+      {
+        label: "C",
+        answer: "Kamusal alanlarda Wi-Fi kullanımında, SSL şifrelemesi gibi güvenlik protokollerini destekleyen ağların kullanılması önem taşımaktadır.",
+        isCorrect: false,
+        points: 0
+      },
+      {
+        label: "D",
+        answer: "Halka açık alanlarda Wi-Fi kullanımı sırasında, otomatik bağlantı seçeneklerinin devre dışı bırakılması ve ağa manuel olarak bağlanılması tavsiye edilir.",
+        isCorrect: false,
+        points: 0
+      },
+      {
+        label: "E",
+        answer: "Büyük etkinliklerde Wi-Fi ağına bağlanırken, güvenlik duvarları ve antivirüs yazılımları gibi güvenlik önlemlerinin aktif hale getirilmesi şarttır.",
         isCorrect: false,
         points: 0
       },

@@ -124,7 +124,7 @@ const Quiz = (props) => {
     <div className="max-w-2xl mx-auto p-6">
       {quizStatus === "completed" && (
         <div className="text-2xl font-bold text-center">
-          <QuizCompleted quizStatus={quizStatus}  setQuizStatus={setQuizStatus} userAnswers={userAnswers} userInfo={userInfo} />
+          <QuizCompleted quizStatus={quizStatus} setQuizStatus={setQuizStatus} userAnswers={userAnswers} userInfo={userInfo} />
         </div>
       )}
       {quizStatus === "started" && (
@@ -151,12 +151,13 @@ const Quiz = (props) => {
               </div>
             </div>
             <div className="flex flex-col gap-5 text-left mb-4 mt-7">
+              {questions[currentQuestion].scenario.length > 0 && (
+                <div>
+                  <label className='text-orange-500 text-lg font-semibold'>Senaryo</label>
+                  <p className="font-semibold text-xl text-white">{questions[currentQuestion].scenario}</p>
+                </div>
+              )}
               <div>
-                <label className='text-orange-500 text-lg font-semibold'>Senaryo</label>
-                <p className="font-semibold text-xl text-white">{questions[currentQuestion].scenario}</p>
-              </div>
-              <div>
-                <label className='text-orange-500 text-lg font-semibold'>Soru</label>
                 <p className="font-semibold text-xl text-gray-100">{questions[currentQuestion].question}</p>
               </div>
             </div>
