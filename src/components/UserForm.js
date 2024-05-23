@@ -11,6 +11,13 @@ const UserForm = () => {
   const [quizStatus, setQuizStatus] = useState("intro");
   const [userInfo, setUserInfo] = useState(null);
 
+  const { data, isLoading, isError, refetch } = useQuery({
+    queryKey: ["user-form"],
+    enabled: false,
+    refetchOnWindowFocus: false,
+    queryFn: () => fetchCheckEmail()
+  })
+
   const form = useForm({
     mode: 'uncontrolled',
     initialValues: {
@@ -36,34 +43,43 @@ const UserForm = () => {
     },
   });
 
-  const quizStart = (values) => {
-    userFormQuery.refetch();
+  const quizStart = async (values) => {
+    try {
+      const { data } = await refetch();
 
-    if (userFormQuery.isError || !userFormQuery?.data === undefined) {
-      return Swal.fire({
+      if (isError || !data === undefined) {
+        return Swal.fire({
+          title: 'Hata!',
+          text: 'Beklenmedik bir hata oluştu.',
+          icon: 'error',
+          confirmButtonText: 'Kapat'
+        })
+      }
+
+      if (data === true) {
+        return Swal.fire({
+          title: 'Uyarı',
+          text: 'Bu email daha önce kullanılmış. Farklı bir email ile deneyiniz.',
+          icon: 'warning',
+          confirmButtonText: 'Kapat'
+        })
+      }
+
+      if (data === false) {
+        setQuizStatus("started")
+        setUserInfo(values)
+      }
+    } catch (error) {
+      Swal.fire({
         title: 'Hata!',
         text: 'Beklenmedik bir hata oluştu.',
         icon: 'error',
         confirmButtonText: 'Kapat'
-      })
-    }
-
-    if (userFormQuery?.data === false) {
-      return Swal.fire({
-        title: 'Uyarı',
-        text: 'Bu email daha önce kullanılmış. Farklı bir email ile deneyiniz.',
-        icon: 'warning',
-        confirmButtonText: 'Kapat'
-      })
-    }
-
-    if (userFormQuery.data) {
-      setQuizStatus("started")
-      setUserInfo(values)
+      });
     }
   }
 
-  const fetchCheckEmail = async () => {
+  async function fetchCheckEmail() {
     try {
       const response = await fetch(`${api.CheckEMail}${form.getValues().email}`);
       if (!response.ok) {
@@ -76,12 +92,6 @@ const UserForm = () => {
     }
   };
 
-  const userFormQuery = useQuery({
-    queryKey: ["user-form"],
-    enabled: false,
-    retry: 1,
-    queryFn: () => fetchCheckEmail()
-  })
 
   return (
     <>
@@ -145,8 +155,8 @@ const UserForm = () => {
                 type="submit"
                 variant="gradient"
                 fullWidth
-                loading={userFormQuery.isFetching}
-                disabled={userFormQuery.isFetching}
+                loading={isLoading}
+                disabled={isLoading}
                 size='md'
                 gradient={{ from: 'rgba(49, 145, 62, 1)', to: 'lime', deg: 24 }}
               >
