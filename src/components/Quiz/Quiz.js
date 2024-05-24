@@ -132,7 +132,7 @@ const Quiz = (props) => {
     <div className="max-w-2xl mx-auto p-6">
       {quizStatus === "completed" && (
         <div className="text-2xl font-bold text-center">
-          <QuizCompleted quizStatus={quizStatus} setQuizStatus={setQuizStatus} userAnswers={userAnswers} userInfo={userInfo} />
+          <QuizCompleted form={form} quizStatus={quizStatus} setQuizStatus={setQuizStatus} userAnswers={userAnswers} userInfo={userInfo} />
         </div>
       )}
       {quizStatus === "started" && (
