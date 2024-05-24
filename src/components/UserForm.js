@@ -59,7 +59,7 @@ const UserForm = () => {
       if (data === true) {
         return Swal.fire({
           title: 'Uyarı',
-          text: 'Bu email daha önce kullanılmış. Farklı bir email ile deneyiniz.',
+          html: `Bu email daha önce kullanılmış. <br /> Devam etmek için lütfen farklı bir email ile deneyiniz.`,
           icon: 'warning',
           confirmButtonText: 'Kapat'
         })
