@@ -138,10 +138,10 @@ const Quiz = (props) => {
       {quizStatus === "started" && (
         <>
           <div className="mb-6">
-            <div className="flex justify-between text-md text-gray-500 font-medium mb-2">
+            <div className="flex justify-between text-md text-gray-500 font-medium mb-2 flex-col md:flex-row">
               <QuizUserInfo data={userInfo} />
-              <div className="flex flex-col">
-                <span className='text-lg text-gray-200 mt-3 self-end'>Soru {currentQuestion + 1}/{questions.length}</span>
+              <div className="flex flex-col self-center md:self-auto">
+                <span className='text-lg text-gray-200 mt-3 self-center md:self-end'>Soru {currentQuestion + 1}/{questions.length}</span>
                 <div className="flex gap-1">
                   {bonusHelpCount > 0 ? (
                     <>
