@@ -96,11 +96,15 @@ const UserForm = () => {
   return (
     <>
       {quizStatus === "intro" ? (
-        <section className="flex items-center justify-center flex-col mt-10">
+        <section className="flex items-center justify-center flex-col">
+          <p className='text-white text-xl font-semibold'>
+            "CyberGame” adlı bu oyun uygulaması, sosyal mühendislik ve fidye yazılımları gibi önemli siber tehditlere karşı işe alım sürecine tabi tutulacak personellerin oryantasyon sürecini maksimum verimle tamamlamasına imkan veren ve kurumsal düzeydeki güvenlik risklerine karşı kurum farkındalık seviyesini artırmayı amaçlayarak siber tehditlere karşı çalışanların bilgi ve becerilerini geliştirmek için özel olarak tasarlanmıştır.
+          </p>
+       
+          <div className="grid w-full max-w-sm items-center gap-5 mt-10 text-white">
           <h2 className="text-3xl font-semibold leading-none tracking-tight text-white">
             Kullanıcı Bilgi Formu
           </h2>
-          <div className="grid w-full max-w-sm items-center gap-2 mt-5 text-white">
             <form className="flex flex-col gap-4" onSubmit={form.onSubmit((values) => quizStart(values))}>
               <TextInput
                 withAsterisk
@@ -165,7 +169,7 @@ const UserForm = () => {
             </form>
           </div>
         </section>
-      ) : <Quiz quizStatus={quizStatus} setQuizStatus={setQuizStatus} userInfo={userInfo} />}
+      ) : <Quiz quizStatus={quizStatus} form={form} setQuizStatus={setQuizStatus} userInfo={userInfo} />}
     </>
   )
 }

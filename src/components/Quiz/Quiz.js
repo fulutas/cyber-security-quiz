@@ -20,7 +20,7 @@ const itemAnimation = {
 }
 
 const Quiz = (props) => {
-  const { quizStatus, setQuizStatus, userInfo } = props
+  const { quizStatus, setQuizStatus, userInfo, form } = props
 
   const navigate = useNavigate();
   const SECOND = 45000;
@@ -119,6 +119,14 @@ const Quiz = (props) => {
     }
   };
 
+  const handleQuit = () => {
+    const confirmQuit = window.confirm('Çıkmak istediğinizden emin misiniz? Tüm ilerlemeniz kaybolacak.');
+    if (confirmQuit) {
+      setQuizStatus("intro");
+      form.reset()
+    }
+  };
+
 
   return (
     <div className="max-w-2xl mx-auto p-6">
@@ -150,6 +158,7 @@ const Quiz = (props) => {
                 </div>
               </div>
             </div>
+            <QuizCountDown countdown={countdown} />
             <div className="flex flex-col gap-5 text-left mb-4 mt-7">
               {questions[currentQuestion].scenario.length > 0 && (
                 <div>
@@ -186,13 +195,12 @@ const Quiz = (props) => {
               </motion.button>
             ))}
           </div>
-          <QuizCountDown countdown={countdown} />
           <div className="mt-10">
             <Button
               type="submit"
               color='gray.6'
               size='md'
-              onClick={() => setQuizStatus("intro")}
+              onClick={handleQuit}
               fullWidth
             >
               Vazgeç

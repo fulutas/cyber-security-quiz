@@ -25,16 +25,12 @@
 	padding: 0;
 }
 
-html {
-	height: 100%;
-}
 
 header a {
 	font-family: "Oleo Script", system-ui;
 }
 
 body {
-	height: 100%;
 	font-family: "Titillium Regular" !important;
 	// background-color: #f8fafc !important;
 
@@ -81,12 +77,11 @@ canvas {
 	width: 100%;
 	max-width: 1340px;
 	margin: 0 auto;
-	min-height: calc(100vh - 98px);
+	margin-bottom: 30px;
 	margin-top: 30px;
 	// background-color: #f8fafc !important;
 	// background: linear-gradient(315deg, #3a65cb 0%, #09162f 100%);
 	background: linear-gradient(315deg, #09162f 0%, #3a65cb 100%);
-
 	border-radius: 10px;
 }
 
